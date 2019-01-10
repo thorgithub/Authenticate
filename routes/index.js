@@ -6,7 +6,7 @@ router.get('/',(req,res)=>res.render('index'));
 
 router.get('/dashboard',ensureAuthenticated,(req,res)=>
     res.render('dashboard',{
-        name:req.user.name}
+        person:req.user,name:req.user.name}
 ));
 
-module.exports = router;  
+module.exports = router;   

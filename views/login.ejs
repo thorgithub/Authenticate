@@ -7,38 +7,27 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://bootswatch.com/4/sketchy/bootstrap.min.css">
-    
+    <style>
+      a{
+        text-decoration: none;
+      }
+      a:hover{
+        text-decoration: none;
+      }
+    </style>
     <title>Authenticate</title>
   </head>
   <body>
-   
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand mx-5 text-info" href="#">Learning to Authenticate</a>
-  
-  <div class="collapse navbar-collapse" id="navbarColor03">
-    <ul class="navbar-nav justify-content-center ml-5">
-      <li class="nav-item mx-5">
-        <a class="nav-link" href="/">Home</a>
-      </li>  
-      <li class="nav-item mx-5">
-        <a class="nav-link" href="/users/login">Login</a>
-      </li>
-        <li class="nav-item mx-5">
-        <a class="nav-link" href="/users/register">Register</a>
-      </li>
-        <li class="nav-item mx-5">
-        <a class="nav-link" href="/dashboard">Dashboard</a>
-      </li>
-    </ul>
 
-  </div>
-</nav>
    
+<%- include ./partials/headers %>
    
     <main class="container col-sm-4 my-5"> 
     <form action="/users/login" method="POST">
       <%- include ./partials/messages %>
+
+      
+
     <div class="form-group ">
       <label for="exampleInputEmail1">Email address</label>
       <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="<%= typeof email != 'undefined' ? email : '' %>">
@@ -49,14 +38,12 @@
       <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" required>
     </div>
           
-    <button type="" class="btn d-inline btn-outline-secondary my-3"> login</button>
-    </form>
+    <button type="" class="btn d-inline mx-4 btn-outline-secondary my-3"> login</button></form>
+    <button class="btn btn-danger d-inline mx-3"> <a href="/auth/google" class="text-white">login with google+ </a></button>                
+    
     <small id="emailHelp" class="form-text d-inline text-muted">Do not have an account !</small>
     <button type="" class="d-inline btn btn-outline-secondary my-3"> <a href="/users/register">Register</a></button>
-                    
-       
-    
-       
+      
     </main> 
     
 

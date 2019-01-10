@@ -2,16 +2,18 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts')
 const indexRoutes = require('./routes/index');
 const usersRoutes = require('./routes/users');
+const authRoutes = require('./routes/auth')
 const mongoose = require('mongoose');
 const passport = require('passport');
 const keys = require('./config/keys');
 const flash = require('connect-flash');
 const session = require('express-session');
-
-
-
+  
+   
+   
 //passport config
 require('./config/passport')(passport);
+require('./config/passport-google')
   
 var app = express();
 var port = process.env.PORT || 3000 ; 
@@ -36,13 +38,13 @@ app.use(passport.session());
 //connect flash
 app.use(flash());
 
-// global var
+// global var  
 app.use((req,res,next)=>{
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
-    next();
-})
+    next(); 
+})  
 
 //connecting to db
 mongoose.connect(keys.mongoURI,{useNewUrlParser: true})
@@ -51,6 +53,7 @@ mongoose.connect(keys.mongoURI,{useNewUrlParser: true})
 // Routes   
 app.use('/',indexRoutes); 
 app.use('/users',usersRoutes);
+app.use('/auth',authRoutes);
 
 app.listen(port,()=>{
     console.log(`Server up on port: ${port}`)
